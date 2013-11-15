@@ -1,0 +1,8 @@
+{
+  "name": "tacobot",
+  "repository": "https://github.com/tacobot/tacobot",
+  "dependencies": {
+    "coffee-script" : ">=1.6.3",
+    "shelljs"       : ">=0.2.6"
+  }
+}
