@@ -3,6 +3,7 @@
   "repository": "https://github.com/tacobot/tacobot",
   "dependencies": {
     "coffee-script" : ">=1.6.3",
-    "shelljs"       : ">=0.2.6"
+    "shelljs"       : ">=0.2.6",
+    "express"       : ">=3.4.5"
   }
 }
