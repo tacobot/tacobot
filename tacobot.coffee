@@ -21,7 +21,7 @@ tacobot.post '/update', (request, response) ->
     echo 'Sorry, this script requires git'
     exit 1
 
-  repo_path = '/Users/ted/Code/tacofancy'
+  repo_path = '../tacofancy'
   cd repo_path
   exec 'git pull', (pull_code, pull_output) ->
     exec 'cake build:toc', (build_code, build_output) ->
@@ -29,9 +29,7 @@ tacobot.post '/update', (request, response) ->
         for line in status_output.split('\n') when line.match(/#\s+modified:\s+(\S+)/i)
           do (line) -> 
             path = line.match(/#\s+modified:\s+(\S+)/i)?[1]
-            exec 'export GIT_COMMITTER_EMAIL=tacobot@knowtheory.net'
-            exec 'export GIT_COMMITTER_NAME=tacobot'
-            exec 'git commit -a -m "Updating index"', (commit_code, commit_output) ->
+            exec 'GIT_COMMITTER_EMAIL=tacobot@knowtheory.net GIT_COMMITTER_NAME=tacobot git commit -a -m "Updating index"', (commit_code, commit_output) ->
               exec 'git push' # try not pushing for every line.
   
 tacobot.listen 6534
