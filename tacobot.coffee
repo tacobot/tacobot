@@ -29,7 +29,7 @@ tacobot.post '/update', (request, response) ->
         for line in status_output.split('\n') when line.match(/#\s+modified:\s+(\S+)/i)
           do (line) -> 
             path = line.match(/#\s+modified:\s+(\S+)/i)?[1]
-            exec 'GIT_COMMITTER_EMAIL=tacobot@knowtheory.net GIT_COMMITTER_NAME=tacobot git commit -a -m "Updating index"', (commit_code, commit_output) ->
+            exec 'GIT_AUTHOR_EMAIL=tacobot@knowtheory.net GIT_AUTHOR_NAME=tacobot git commit -a -m "Updating index"', (commit_code, commit_output) ->
               exec 'git push' # try not pushing for every line.
   
 tacobot.listen 6534
