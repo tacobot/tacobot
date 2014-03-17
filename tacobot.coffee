@@ -1,7 +1,10 @@
 require 'shelljs/global'
+fs = require 'fs'
 express = require 'express'
 tacobot = express()
 execFile = require('child_process').execFile
+
+tacobot.use express.logger(stream: fs.createWriteStream('tacobot.access.log', {'flags': 'w'}))
 
 tacobot.get '/', (request, response) ->
   response.send """
@@ -17,6 +20,7 @@ tacobot.get '/', (request, response) ->
 
 tacobot.post '/update', (request, response) ->
   response.send "Checking..."
+  console.log new Date()
   if not which 'git'
     echo 'Sorry, this script requires git'
     exit 1
